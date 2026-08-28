@@ -31,6 +31,6 @@ def ollama_key_exist():
 transcriber = whisper.load_model(WHISPER)
 
 # Main body
-stt.record_user()
+# stt.record_user()
 print(transcriber.transcribe(WAVE_OUTPUT_FILENAME)['text'])
 
