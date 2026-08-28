@@ -3,20 +3,17 @@ import os
 import wave
 import pyaudio
 import whisper
-# import piper
-# import ollama
-# from piper import PiperVoice
-
 import config
 
-voice = config.voice
 CHANNELS = config.CHANNELS
 RATE = config.RATE
 FORMAT = config.FORMAT
 CHUNK = config.CHUNK
-REC_TIME = config.RECORD_SECONDS
-OUTPUT_FILE = config.WAVE_OUTPUT_FILENAME
+RECORD_SECONDS = config.RECORD_SECONDS
 
+WAVE_OUTPUT_FILENAME = config.WAVE_OUTPUT_FILENAME
+
+WHISPER = config.WHISPER
 
 ### Short record with Pyaudio
 def record_user():
@@ -32,7 +29,7 @@ def record_user():
 
     frames = []
 
-    for i in range(0, int(RATE / CHUNK * REC_TIME)):
+    for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
         data = stream.read(CHUNK)
         frames.append(data)
 
@@ -42,7 +39,7 @@ def record_user():
     stream.close()
     p.terminate()
 
-    wf = wave.open(OUTPUT_FILE, 'wb')
+    wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
     wf.setnchannels(CHANNELS)
     wf.setsampwidth(p.get_sample_size(FORMAT))
     wf.setframerate(RATE)
@@ -50,9 +47,3 @@ def record_user():
     wf.close()
 
     return None
-
-
-def transcribe_user():
-    model = whisper.load_model("base")
-    result = model.transcribe(OUTPUT_FILE)
-    print(result['text'])
