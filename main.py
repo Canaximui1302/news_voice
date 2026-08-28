@@ -8,6 +8,7 @@ from ollama import chat
 from ollama import Client
 import config
 import speech_text as stt
+import summary_voice as tts
 
 
 CHANNELS = config.CHANNELS
@@ -27,10 +28,9 @@ def ollama_key_exist():
     print("Key exists:", key is not None)
     print("Key length:", len(key) if key else 0)
 
-# Setting up Whisper
-transcriber = whisper.load_model(WHISPER)
+
 
 # Main body
 # stt.record_user()
-print(transcriber.transcribe(WAVE_OUTPUT_FILENAME)['text'])
+# stt.transcribe_user()
 

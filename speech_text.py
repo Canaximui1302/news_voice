@@ -15,6 +15,9 @@ WAVE_OUTPUT_FILENAME = config.WAVE_OUTPUT_FILENAME
 
 WHISPER = config.WHISPER
 
+# Setting up Whisper
+transcriber = whisper.load_model(WHISPER)
+
 ### Short record with Pyaudio
 def record_user():
     p = pyaudio.PyAudio()
@@ -47,3 +50,9 @@ def record_user():
     wf.close()
 
     return None
+
+## Function to transcribe audio data
+def transcribe_user():
+    res = transcriber.transcribe(WAVE_OUTPUT_FILENAME)['text']
+    # print(res)
+    return res
