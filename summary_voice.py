@@ -8,4 +8,5 @@ from ollama import chat
 import config
 
 
-
+# Init voice
+voice = PiperVoice.load(config.VOICE)

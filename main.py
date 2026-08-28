@@ -19,9 +19,6 @@ RECORD_SECONDS = config.RECORD_SECONDS
 WAVE_OUTPUT_FILENAME = config.WAVE_OUTPUT_FILENAME
 WHISPER = config.WHISPER
 
-# Init things
-voice = PiperVoice.load(config.VOICE)
-
 # Setting up Ollama key
 key = os.getenv("OLLAMA_API_KEY")
 def ollama_key_exist():
