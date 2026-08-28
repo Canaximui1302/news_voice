@@ -12,6 +12,16 @@ from piper import PiperVoice
 from ollama import chat
 from ollama import Client
 
+import config
+
+voice = config.voice
+CHANNELS = config.CHANNELS
+RATE = config.RATE
+FORMAT = config.FORMAT
+CHUNK = config.CHUNK
+REC_TIME = config.RECORD_SECONDS
+OUTPUT_FILE = config.WAVE_OUTPUT_FILENAME
+
 client = Client(headers={'Authorization': f"Bearer {os.getenv('OLLAMA_API_KEY')}"})
 
 key = os.getenv("OLLAMA_API_KEY")
@@ -20,17 +30,7 @@ print("Key exists:", key is not None)
 print("Key length:", len(key) if key else 0)
 
 # Hyperparameters for recording
-CHUNK = 1024
-FORMAT = pyaudio.paInt16
-CHANNELS = 2
-RATE = 44100
-RECORD_SECONDS = 10
-WAVE_OUTPUT_FILENAME = "audio_file/for_whisper.wav"
 
-# Setting voice for text to speech
-voice = PiperVoice.load("en_GB-jenny_dioco-medium.onnx")
-# with wave.open("audio_file/test.wav", "wb") as wav_file:
-#     voice.synthesize_wav("Welcome to the world of speech synthesis!", wav_file)
 
 sample_rate = voice.config.sample_rate
 print("Record sample rate: ", sample_rate)
@@ -51,7 +51,7 @@ def record():
 
     frames = []
 
-    for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
+    for i in range(0, int(RATE / CHUNK * REC_TIME)):
         data = stream.read(CHUNK)
         frames.append(data)
 
@@ -61,7 +61,7 @@ def record():
     stream.close()
     p.terminate()
 
-    wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
+    wf = wave.open(OUTPUT_FILE, 'wb')
     wf.setnchannels(CHANNELS)
     wf.setsampwidth(p.get_sample_size(FORMAT))
     wf.setframerate(RATE)
