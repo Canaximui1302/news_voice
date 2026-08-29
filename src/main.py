@@ -28,8 +28,8 @@ def ollama_key_exist():
 
 
 # Main body
-# stt.record_user()
-# stt.transcribe_user()
-t = "I love you But I don’t really show you Id call you But only if you want me too Oh don’t you let it stop"
+stt.record_user()
+stt.transcribe_user()
+t = "I love you But I don’t really show you I'd call you But only if you want me too Oh don’t you let it stop"
 tts.speaker(t)
 

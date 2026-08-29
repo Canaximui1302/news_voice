@@ -19,7 +19,7 @@ WHISPER = "base"
 SUMMARY = "qwen3:4b"
 
 # For Piper text to speech
-VOICE = "en_GB-jenny_dioco-medium.onnx"
+VOICE = "voice_model/en_GB-jenny_dioco-medium.onnx"
 TEST_VOICE = "fly me to the moon and let me play among the stars"
 
 

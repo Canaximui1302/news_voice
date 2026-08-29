@@ -24,8 +24,10 @@ def speaker(text):
 
     # text = "Hello! This audio is being generated and played directly."
 
+    print("*** Assistant speaking ***")
     for chunk in voice.synthesize(text):
         stream.write(chunk.audio_int16_bytes)
+    print("*** Done speaking ***")
 
     stream.stop_stream()
     stream.close()

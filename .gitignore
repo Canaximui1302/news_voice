@@ -1,3 +1,2 @@
 .venv/
-en_GB-jenny_dioco-medium.onnx
-en_GB-jenny_dioco-medium.onnx.json
+voice_model/

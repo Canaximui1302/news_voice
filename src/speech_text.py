@@ -54,5 +54,5 @@ def record_user():
 ## Function to transcribe audio data
 def transcribe_user():
     res = transcriber.transcribe(WAVE_OUTPUT_FILENAME)['text']
-    # print(res)
+    print(res)
     return res
