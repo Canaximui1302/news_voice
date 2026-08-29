@@ -9,6 +9,7 @@ from ollama import Client
 import config
 import speech_text as stt
 import summary_voice as tts
+import web_search as ws
 
 
 CHANNELS = config.CHANNELS
@@ -28,8 +29,13 @@ def ollama_key_exist():
 
 
 # Main body
-stt.record_user()
-stt.transcribe_user()
-t = "I love you But I don’t really show you I'd call you But only if you want me too Oh don’t you let it stop"
-tts.speaker(t)
+# stt.record_user()
+# stt.transcribe_user()
+# t = "I love you But I don’t really show you I'd call you But only if you want me too Oh don’t you let it stop"
+# tts.speaker(t)
 
+stt.record_user()
+question = stt.transcribe_user()
+content=ws.fetch_content(question)
+summ = ws.summarize_news(content)
+tts.speaker(summ)

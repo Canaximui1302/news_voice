@@ -36,7 +36,7 @@ def record_user():
         data = stream.read(CHUNK)
         frames.append(data)
 
-    print("*** Done recording ***")
+    print("*** Done recording ***\n")
 
     stream.stop_stream()
     stream.close()
@@ -54,5 +54,7 @@ def record_user():
 ## Function to transcribe audio data
 def transcribe_user():
     res = transcriber.transcribe(WAVE_OUTPUT_FILENAME, fp16=False)['text']
+    print("*** USER'S REQUEST ***")
     print(res)
+    print("**********************\n")
     return res
