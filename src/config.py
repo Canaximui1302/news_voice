@@ -8,7 +8,7 @@ CHUNK = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
 RATE = 44100
-RECORD_SECONDS = 10
+RECORD_SECONDS = 6
 
 WAVE_OUTPUT_FILENAME = "audio_file/for_whisper.wav"
 
